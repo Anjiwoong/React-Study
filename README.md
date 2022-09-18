@@ -9,3 +9,4 @@
 |   11    |                  [food-order-app](https://github.com/Anjiwoong/React-Study/tree/main/food-order-app)                  |
 |   12    | [look-behind-the-scenes-of-react](https://github.com/Anjiwoong/React-Study/tree/main/look-behind-the-scenes-of-react) |
 |   13    |                 [class-component](https://github.com/Anjiwoong/React-Study/tree/main/class-component)                 |
+|   14    |                    [http-request](https://github.com/Anjiwoong/React-Study/tree/main/http-request)                    |
