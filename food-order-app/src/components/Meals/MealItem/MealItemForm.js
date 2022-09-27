@@ -14,7 +14,7 @@ const MealItemForm = props => {
     const enteredAmountNumber = +enteredAmount;
 
     if (
-      !enteredAmount.trim().length ||
+      enteredAmount.trim().length === 0 ||
       enteredAmountNumber < 1 ||
       enteredAmountNumber > 5
     ) {
@@ -28,8 +28,8 @@ const MealItemForm = props => {
   return (
     <form className={styles.form} onSubmit={submitHandler}>
       <Input
-        label="Amount"
         ref={amountInputRef}
+        label="Amount"
         input={{
           id: 'amount_' + props.id,
           type: 'number',
@@ -39,7 +39,7 @@ const MealItemForm = props => {
           defaultValue: '1',
         }}
       />
-      <button>Add</button>
+      <button>+ Add</button>
       {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
     </form>
   );
