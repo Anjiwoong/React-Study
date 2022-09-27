@@ -77,14 +77,10 @@ const Login = () => {
 
   const emailChangeHandler = e => {
     dispatchEmail({ type: 'USER_INPUT', val: e.target.value });
-
-    // setFormIsValid(e.target.value.includes('@') && passwordState.isValid);
   };
 
   const passwordChangeHandler = e => {
     dispatchPassword({ type: 'USER_INPUT', val: e.target.value });
-
-    // setFormIsValid(emailState.isValid && e.target.value.trim().length > 6);
   };
 
   const validateEmailHandler = () => {
