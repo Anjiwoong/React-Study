@@ -12,13 +12,12 @@ const App = () => {
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
+
     try {
       const response = await fetch(
         'https://react-http-c498a-default-rtdb.firebaseio.com/movies.json'
       );
-      if (!response.ok) {
-        throw new Error('Something went wrong!');
-      }
+      if (!response.ok) throw new Error('Something went wrong!');
 
       const data = await response.json();
 
@@ -34,7 +33,6 @@ const App = () => {
       }
 
       setMovies(loadedMovies);
-      setIsLoading(false);
     } catch (error) {
       setError(error.message);
     }
@@ -46,7 +44,6 @@ const App = () => {
   }, [fetchMoviesHandler]);
 
   const addMovieHandler = async movie => {
-    setError(null);
     try {
       const response = await fetch(
         'https://react-http-c498a-default-rtdb.firebaseio.com/movies.json',
@@ -58,14 +55,10 @@ const App = () => {
           },
         }
       );
-
-      if (!response.ok) {
-        throw new Error('Something went wrong!');
-      }
       const data = await response.json();
       console.log(data);
     } catch (error) {
-      setError(error.message);
+      console.log(error.message);
     }
   };
 
