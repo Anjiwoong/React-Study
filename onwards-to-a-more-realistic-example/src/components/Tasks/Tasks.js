@@ -1,14 +1,14 @@
 import Section from '../UI/Section';
 import TaskItem from './TaskItem';
-import classes from './Tasks.module.css';
+import styles from './Tasks.module.css';
 
-const Tasks = (props) => {
+const Tasks = props => {
   let taskList = <h2>No tasks found. Start adding some!</h2>;
 
   if (props.items.length > 0) {
     taskList = (
       <ul>
-        {props.items.map((task) => (
+        {props.items.map(task => (
           <TaskItem key={task.id}>{task.text}</TaskItem>
         ))}
       </ul>
@@ -27,7 +27,7 @@ const Tasks = (props) => {
 
   return (
     <Section>
-      <div className={classes.container}>{content}</div>
+      <div className={styles.container}>{content}</div>
     </Section>
   );
 };
