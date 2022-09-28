@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import classes from './AddMovie.module.css';
+import styles from './AddMovie.module.css';
 
 function AddMovie(props) {
   const titleRef = useRef('');
@@ -23,15 +23,15 @@ function AddMovie(props) {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className={classes.control}>
+      <div className={styles.control}>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" ref={titleRef} />
       </div>
-      <div className={classes.control}>
+      <div className={styles.control}>
         <label htmlFor="opening-text">Opening Text</label>
         <textarea rows="5" id="opening-text" ref={openingTextRef}></textarea>
       </div>
-      <div className={classes.control}>
+      <div className={styles.control}>
         <label htmlFor="date">Release Date</label>
         <input type="text" id="date" ref={releaseDateRef} />
       </div>
