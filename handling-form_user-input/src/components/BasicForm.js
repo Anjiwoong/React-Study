@@ -1,33 +1,30 @@
 import useInput from '../hooks/use-input';
 
-const isNotEmpty = value => value.trim() !== '';
-const isEmail = value => value.includes('@');
-
 const BasicForm = props => {
   const {
     value: firstNameValue,
-    valueIsValid: firstNameIsValid,
+    isValid: firstNameIsValid,
     hasError: firstNameHasError,
     valueChangeHandler: firstNameChangeHandler,
     inputBlurHandler: firstNameBlurHandler,
     reset: resetFirstName,
-  } = useInput(isNotEmpty);
+  } = useInput(value => value.trim() !== '');
   const {
     value: lastNameValue,
-    valueIsValid: lastNameIsValid,
+    isValid: lastNameIsValid,
     hasError: lastNameHasError,
     valueChangeHandler: lastNameChangeHandler,
     inputBlurHandler: lastNameBlurHandler,
     reset: resetLastName,
-  } = useInput(isNotEmpty);
+  } = useInput(value => value.trim() !== '');
   const {
     value: emailValue,
-    valueIsValid: emailIsValid,
+    isValid: emailIsValid,
     hasError: emailHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput(isEmail);
+  } = useInput(value => value.includes('@'));
 
   let formIsValid = false;
 
@@ -46,18 +43,18 @@ const BasicForm = props => {
     resetEmail();
   };
 
-  const firstNameClasses = firstNameHasError
+  const firstNameStyles = firstNameHasError
     ? 'form-control invalid'
     : 'form-control';
-  const lastNameClasses = lastNameHasError
+  const lastNameStyles = lastNameHasError
     ? 'form-control invalid'
     : 'form-control';
-  const emailClasses = emailHasError ? 'form-control invalid' : 'form-control';
+  const emailStyles = emailHasError ? 'form-control invalid' : 'form-control';
 
   return (
     <form onSubmit={submitHandler}>
       <div className="control-group">
-        <div className={firstNameClasses}>
+        <div className={firstNameStyles}>
           <label htmlFor="name">First Name</label>
           <input
             type="text"
@@ -70,7 +67,7 @@ const BasicForm = props => {
             <p className="error-text">Please enter a first name.</p>
           )}
         </div>
-        <div className={lastNameClasses}>
+        <div className={lastNameStyles}>
           <label htmlFor="name">Last Name</label>
           <input
             type="text"
@@ -84,7 +81,7 @@ const BasicForm = props => {
           )}
         </div>
       </div>
-      <div className={emailClasses}>
+      <div className={emailStyles}>
         <label htmlFor="name">E-Mail Address</label>
         <input
           type="text"

@@ -1,11 +1,11 @@
 import BasicForm from './components/BasicForm';
 
-function App() {
+const App = () => {
   return (
     <div className="app">
       <BasicForm />
     </div>
   );
-}
+};
 
 export default App;
