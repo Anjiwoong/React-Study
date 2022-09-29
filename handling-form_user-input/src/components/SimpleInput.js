@@ -1,18 +1,18 @@
 import useInput from '../hooks/use-input';
 
-const SimpleInput = props => {
+const SimpleInput = () => {
   const {
     value: enteredName,
-    valueIsValid: enteredNameIsValid,
+    isValid: enteredNameIsValid,
     hasError: nameInputHasError,
-    valueChangeHandler: nameChangedHandler,
+    valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetNameInput,
   } = useInput(value => value.trim() !== '');
 
   const {
     value: enteredEmail,
-    valueIsValid: enteredEmailIsValid,
+    isValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
@@ -28,34 +28,36 @@ const SimpleInput = props => {
 
     if (!enteredNameIsValid) return;
 
+    console.log(enteredName);
+
     resetNameInput();
     resetEmailInput();
   };
 
-  const nameInputClasses = nameInputHasError
+  const nameInputStyles = nameInputHasError
     ? 'form-control invalid'
     : 'form-control';
 
-  const emailInputClasses = emailInputHasError
+  const emailInputStyles = emailInputHasError
     ? 'form-control invalid'
     : 'form-control';
 
   return (
     <form onSubmit={formSubmissionHandler}>
-      <div className={nameInputClasses}>
+      <div className={nameInputStyles}>
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
           id="name"
-          onChange={nameChangedHandler}
+          onChange={nameChangeHandler}
           onBlur={nameBlurHandler}
           value={enteredName}
         />
         {nameInputHasError && (
-          <p className="error-text">Name must not be empty.</p>
+          <p className="error-text">Name must not be empty</p>
         )}
       </div>
-      <div className={emailInputClasses}>
+      <div className={emailInputStyles}>
         <label htmlFor="email">Your E-mail</label>
         <input
           type="email"

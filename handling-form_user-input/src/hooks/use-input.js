@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 
 const initialInputState = {
   value: '',
@@ -10,16 +10,19 @@ const inputStateReducer = (state, action) => {
     return { value: action.value, isTouched: state.isTouched };
   }
   if (action.type === 'BLUR') {
-    return { isTouched: true, value: state.value };
+    return {
+      isTouched: true,
+      value: state.value,
+    };
   }
   if (action.type === 'RESET') {
-    return { isTouched: false, value: '' };
+    return {
+      isTouched: false,
+      value: '',
+    };
   }
 
-  return {
-    value: '',
-    isTouched: false,
-  };
+  return inputStateReducer;
 };
 
 const useInput = validateValue => {
@@ -40,7 +43,7 @@ const useInput = validateValue => {
 
   return {
     value: inputState.value,
-    valueIsValid: valueIsValid,
+    isValid: valueIsValid,
     hasError,
     valueChangeHandler,
     inputBlurHandler,
