@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import Card from '../UI/Card';
-
-import styles from './AvailableMeals.module.css';
 import MealItem from './MealItem/MealItem';
+import styles from './AvailableMeals.module.css';
+import { useEffect, useState } from 'react';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  const [httpError, setHttpError] = useState(null);
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -15,7 +14,9 @@ const AvailableMeals = () => {
         'https://react-http-c498a-default-rtdb.firebaseio.com/meals.json'
       );
 
-      if (!response.ok) throw new Error('Something went wrong!');
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
 
       const responseData = await response.json();
 
@@ -34,23 +35,19 @@ const AvailableMeals = () => {
       setIsLoading(false);
     };
 
-    fetchMeals().catch(error => {
+    fetchMeals().catch(err => {
       setIsLoading(false);
-      setHttpError(error.message);
+      setHttpError(err.message);
     });
   }, []);
 
   if (isLoading) {
-    return (
-      <section className={styles.MealsLoading}>
-        <p>Loading...</p>
-      </section>
-    );
+    return <section className={styles.mealsLoading}>Loading...</section>;
   }
 
   if (httpError) {
     return (
-      <section className={styles.MealsError}>
+      <section className={styles.mealsError}>
         <p>{httpError}</p>
       </section>
     );
@@ -58,8 +55,8 @@ const AvailableMeals = () => {
 
   const mealsList = meals.map(meal => (
     <MealItem
-      id={meal.id}
       key={meal.id}
+      id={meal.id}
       name={meal.name}
       description={meal.description}
       price={meal.price}

@@ -1,23 +1,24 @@
-import React, { useContext, useState } from 'react';
-import CartContext from '../../store/cart-context';
+import { useContext, useState } from 'react';
+
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
-
 import styles from './Cart.module.css';
+import CartContext from '../../store/cart-context';
 import Checkout from './Checkout';
 
 const Cart = props => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
-  const cartItemAddHandler = item => cartCtx.addItem({ ...item, amount: 1 });
-
   const cartItemRemoveHandler = id => cartCtx.removeItem(id);
+
+  const cartItemAddHandler = item => cartCtx.addItem(item);
 
   const orderHandler = () => setIsCheckout(true);
 
@@ -46,8 +47,8 @@ const Cart = props => {
           name={item.name}
           amount={item.amount}
           price={item.price}
-          onAdd={cartItemAddHandler.bind(null, item)}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartItemAddHandler.bind(null, item)}
         />
       ))}
     </ul>
@@ -74,7 +75,7 @@ const Cart = props => {
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+        <Checkout onCancel={props.onClose} onConfirm={submitOrderHandler} />
       )}
       {!isCheckout && modalActions}
     </>
