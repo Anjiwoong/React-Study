@@ -1,16 +1,16 @@
-import classes from './Notification.module.css';
+import styles from './Notification.module.css';
 
 const Notification = props => {
   let specialClasses = '';
 
   if (props.status === 'error') {
-    specialClasses = classes.error;
+    specialClasses = styles.error;
   }
   if (props.status === 'success') {
-    specialClasses = classes.success;
+    specialClasses = styles.success;
   }
 
-  const cssClasses = `${classes.notification} ${specialClasses}`;
+  const cssClasses = `${styles.notification} ${specialClasses}`;
 
   return (
     <section className={cssClasses}>

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
@@ -9,10 +8,10 @@ import { fetchCartData, sendCartData } from './store/cart-actions';
 
 let isInitial = true;
 
-function App() {
-  const dispatch = useDispatch();
+const App = () => {
   const showCart = useSelector(state => state.ui.cartIsVisible);
   const cart = useSelector(state => state.cart);
+  const dispatch = useDispatch();
   const notification = useSelector(state => state.ui.notification);
 
   useEffect(() => {
@@ -45,6 +44,6 @@ function App() {
       </Layout>
     </>
   );
-}
+};
 
 export default App;

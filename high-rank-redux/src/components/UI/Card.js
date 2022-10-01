@@ -1,9 +1,9 @@
-import classes from './Card.module.css';
+import styles from './Card.module.css';
 
-const Card = (props) => {
+const Card = props => {
   return (
     <section
-      className={`${classes.card} ${props.className ? props.className : ''}`}
+      className={`${styles.card} ${props.className ? props.className : ''}`}
     >
       {props.children}
     </section>
