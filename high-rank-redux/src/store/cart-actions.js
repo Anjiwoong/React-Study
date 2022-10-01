@@ -8,9 +8,7 @@ export const fetchCartData = () => {
         'https://react-http-c498a-default-rtdb.firebaseio.com/cart.json'
       );
 
-      if (!response.ok) {
-        throw new Error('Could not fetch cart data!');
-      }
+      if (!response.ok) throw new Error('Could not fetch cart data!');
 
       const data = await response.json();
 
@@ -59,9 +57,7 @@ export const sendCartData = cart => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error('Sending cart data failed.');
-      }
+      if (!response.ok) throw new Error('Sending cart data failed.');
     };
 
     try {
@@ -70,8 +66,8 @@ export const sendCartData = cart => {
       dispatch(
         uiActions.showNotification({
           status: 'success',
-          title: 'Success!',
-          message: 'sent cart data successfully!',
+          title: 'Success...',
+          message: 'Sent cart data successfully!',
         })
       );
     } catch (error) {
